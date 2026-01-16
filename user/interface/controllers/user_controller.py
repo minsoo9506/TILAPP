@@ -68,7 +68,14 @@ def get_users(
 @router.delete("", status_code=204)
 @inject
 def delete_user(
-    user_id: str,
+
+@router.post("/login")
+@inject
+def login(
+    form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
     user_service: UserService = Depends(Provide[Container.user_service]),
 ):
-    user_service.delete_user(user_id)
+    access_token = user_service.login(
+        email=form_data.username, password=form_data.password
+    )
+    return {"access_token": access_token, "token_type": "bearer"}
