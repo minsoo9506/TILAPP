@@ -5,8 +5,11 @@ from datetime import datetime, timedelta
 from fastapi import HTTPException, status, Depends
 from jose import JWTError, jwt
 from enum import StrEnum
+from config import get_settings
 
-SECRET_KEY = "your_secret_key"
+settings = get_settings()
+
+SECRET_KEY = settings.jwt_secret
 ALGORITHM = "HS256"
 
 class Role(StrEnum):
