@@ -46,7 +46,7 @@ def create_note(
     note_service: NoteService = Depends(Provide[Container.note_service]),
 ):
     note = note_service.create_note(
-        user_id=current_user.user_id,
+        user_id=current_user.id,
         title=body.title,
         content=body.content,
         memo_date=body.memo_date,
@@ -65,7 +65,7 @@ def get_notes(
     note_service: NoteService = Depends(Provide[Container.note_service]),
 ):
     total_count, notes = note_service.get_notes(
-        user_id=current_user.user_id,
+        user_id=current_user.id,
         page=page,
         items_per_page=items_per_page,
     )
@@ -87,7 +87,7 @@ def get_note(
     note_service: NoteService = Depends(Provide[Container.note_service]),
 ):
     note = note_service.get_note(
-        user_id=current_user.user_id,
+        user_id=current_user.id,
         id=id,
     )
     if note is None:
@@ -105,7 +105,7 @@ def update_note(
     note_service: NoteService = Depends(Provide[Container.note_service]),
 ):
     note = note_service.update_note(
-        user_id=current_user.user_id,
+        user_id=current_user.id,
         id=id,
         title=body.title,
         content=body.content,
@@ -124,7 +124,7 @@ def delete_note(
     note_service: NoteService = Depends(Provide[Container.note_service]),
 ):
     note_service.delete_note(
-        user_id=current_user.user_id,
+        user_id=current_user.id,
         id=id,
     )
 
@@ -138,7 +138,7 @@ def get_notes_by_tag(
     note_service: NoteService = Depends(Provide[Container.note_service]),
 ):
     total_count, notes = note_service.get_notes_by_tag(
-        user_id=current_user.user_id,
+        user_id=current_user.id,
         tag_name=tag_name,
         page=page,
         items_per_page=items_per_page,
