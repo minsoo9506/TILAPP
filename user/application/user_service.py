@@ -12,10 +12,10 @@ from utils.crypto import Crypto
 
 class UserService:
     @inject
-    def __init__(self, user_repo: IUserRepository):
+    def __init__(self, ulid: ULID, crypto: Crypto, user_repo: IUserRepository):
         self.user_repo = user_repo
-        self.crypto = Crypto()
-        self.ulid = ULID()
+        self.crypto = crypto
+        self.ulid = ulid
 
     def create_user(
         self, name: str, email: str, password: str, memo: str | None = None

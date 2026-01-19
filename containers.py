@@ -1,3 +1,5 @@
+from ulid import ULID
+from utils.crypto import Crypto
 from dependency_injector import containers, providers
 from note.application.note_service import NoteService
 from note.infra.repository.note_repo import NoteRepository
@@ -13,8 +15,12 @@ class Container(containers.DeclarativeContainer):
         ]
     )
     user_repo = providers.Factory(UserRepository)
+    ulid = ULID()
+    crypto = Crypto()
     user_service = providers.Factory(
         UserService,
+        ulid=ulid,
+        crypto=crypto,
         user_repo=user_repo,
     )
     note_repo = providers.Factory(NoteRepository)
