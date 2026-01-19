@@ -8,12 +8,15 @@ dependencies = [
     "alembic>=1.18.0",
     "dependency-injector>=4.48.3",
     "fastapi>=0.128.0",
+    "freezegun>=1.5.5",
     "mysqlclient>=2.2.7",
     "passlib[bcrypt]>=1.7.4",
     "py-ulid>=1.0.3",
     "pydantic-settings>=2.12.0",
     "pydantic[email]>=2.12.5",
     "pymysql>=1.1.2",
+    "pytest>=9.0.2",
+    "pytest-mock>=3.15.1",
     "python-dotenv>=1.2.1",
     "python-jose[cryptography]>=3.5.0",
     "python-multipart>=0.0.21",
@@ -108,10 +111,10 @@ lint = ["_flake8", "_mypy"]
 
 # doc = "ruff check user/ utils/ --select=D101,D102,D103,D107,D201,D202,D204,D300,D414,D417,D419"
 
-# test = "python -m pytest test/"
+test = "python -m pytest test/"
 
 # all = ["format", "lint", "doc", "test", "clean"]
-all = ["format", "lint", "clean"]
+all = ["format", "lint", "test", "clean"]
 
 docker_build = "docker build -t til:latest -f Dockerfile ."
 docker_run = "docker run --env-file .env.dev --name til-container til:latest"
